@@ -1,12 +1,12 @@
 const tableBody = document.querySelector('#tableBody');
-const myModal = new bootstrap.Modal(document.getElementById('modalPokemonData'));
+const myModal = new bootstrap.Modal(document.getElementById('modalPersonajeData'));
 
 let historialStorage = JSON.parse(localStorage.getItem('historial'));
 
-let historialPokemones = [];
+let historialPersonajes = [];
 
 if (historialStorage) {
-    historialPokemones = historialStorage;
+    historialPersonajes = historialStorage;
 }
 
 function renderTabla() {
@@ -58,14 +58,14 @@ function renderTabla() {
                             myModal.show();
 
 
-                            if (!historialPokemones.find((elemento) => elemento.name == data.name)) {
-                                historialPokemones.push({
+                            if (!historialPersonajes.find((elemento) => elemento.name == data.name)) {
+                                historialPersonajes.push({
                                     name: data.name,
                                     img: data.sprites.front_default
                                 })
                             }
 
-                            console.log(historialPokemones)
+                            console.log(historialPersonajes)
 
                             localStorage.setItem('historial', JSON.stringify(historialPokemones));
                         })
