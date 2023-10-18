@@ -17,14 +17,14 @@ function renderTabla() {
                 return `<tr>
                 <td>${elemento.name}</td>
                 <td>${elemento.url}</td>
+                <td>${elemento.id}</td>
                 <td>
-                <button type="button" id="${elemento.url}" class="btn btn-outline-primary btnVerMas" >
+                <button type="button" id="${elemento.id}" class="btn btn-outline-primary btnVerMas" >
                     Ver más
                 </button>
                 </td>
             </tr>`
             });
-
             tableBody.innerHTML = listado.join('');
 
             const botones = document.querySelectorAll('.btnVerMas');
