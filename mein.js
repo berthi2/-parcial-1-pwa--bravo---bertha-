@@ -1,6 +1,16 @@
+const tableBody = document.querySelector('#tableBody');
+const myModal = new bootstrap.Modal(document.getElementById('modalPokemonData'));
+
+let historialStorage = JSON.parse(localStorage.getItem('historial'));
+
+let historialPokemones = [];
+
+if (historialStorage) {
+    historialPokemones = historialStorage;
+}
 
 function renderTabla() {
-    fetch(`https://pokeapi.co/api/v2/pokemon/?limit=100`)
+    fetch(`https://rickandmortyapi.com/api/character/?page=20`)
         .then(response => response.json())
         .then(data => {
             const listado = data.results.map((elemento) => {
