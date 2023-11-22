@@ -20,14 +20,9 @@ function renderTabla() {
                 <td>${elemento.id}</td>
                 <td>${elemento.name}</td>
                 <td>${elemento.url}</td>
-<<<<<<< HEAD:app.js
                 <td>${elemento.gender}</td>
                 <td>
                 <button type="button" id="${elemento.url}" class="btn btn-outline-primary btnVerMas" >
-=======
-                <td>${elemento.id}</td>
-                <button type="button" id="${elemento.id}" class="btn btn-outline-primary btnVerMas" >
->>>>>>> 50464960ffcbec4be01de7f4d1105cccbe56476a:mein.js
                     Ver más
                 </button>
                 </td>
