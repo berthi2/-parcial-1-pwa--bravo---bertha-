@@ -18,7 +18,6 @@ function renderTabla() {
                 <td>${elemento.name}</td>
                 <td>${elemento.url}</td>
                 <td>${elemento.id}</td>
-                <td>
                 <button type="button" id="${elemento.id}" class="btn btn-outline-primary btnVerMas" >
                     Ver más
                 </button>
@@ -80,3 +79,5 @@ function renderTabla() {
 }
 
 renderTabla();
+
+
