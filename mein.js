@@ -10,22 +10,28 @@ if (historialStorage) {
 }
 
 function renderTabla() {
-    fetch(`https://rickandmortyapi.com/api/character/?page=20`)
+    fetch(`https://rickandmortyapi.com/api/character/?page=20&status=alive`)
         .then(response => response.json())
         .then(data => {
+        
+           
             const listado = data.results.map((elemento) => {
                 return `<tr>
+                <td>${elemento.id}</td>
                 <td>${elemento.name}</td>
                 <td>${elemento.url}</td>
-                <td>${elemento.id}</td>
+                <td>${elemento.gender}</td>
                 <td>
-                <button type="button" id="${elemento.id}" class="btn btn-outline-primary btnVerMas" >
+                <button type="button" id="${elemento.url}" class="btn btn-outline-primary btnVerMas" >
                     Ver más
                 </button>
                 </td>
             </tr>`
-            });
+            }); 
+
+           
             tableBody.innerHTML = listado.join('');
+
 
             const botones = document.querySelectorAll('.btnVerMas');
 
@@ -41,19 +47,14 @@ function renderTabla() {
                             const cuerpoModal = document.querySelector('.modal-body');
                             tituloModal.textContent = data.name;
 
-                            const tipo = data.types.map((elemento) => {
-                                return elemento.type.name;
-                            })
-                            const habilidades = data.abilities.map((elemento) => {
-                                return elemento.ability.name;
-                            })
+                        
 
 
                             cuerpoModal.innerHTML = `
-                        <img src="${data.sprites.front_default}" class="w-25 mx-auto d-block" alt="">
-                        <p class="text-center"><strong>Peso: </strong> ${data.weight}</p>
-                        <p class="text-center"><strong>Tipo: </strong> ${tipo.join(', ')}</p>
-                        <p class="text-center"><strong>Habilidades: </strong> ${habilidades.join(', ')}</p>
+                        <img src="${data.image}" class="w-25 mx-auto d-block" alt="">
+                        <p class="text-center"><strong>Genero: </strong> ${data.gender}</p>
+                        <p class="text-center"><strong>Especie: </strong> ${data.species}</p>
+                        <p class="text-center"><strong>Locación: </strong> ${data.location.name}</p>
                     `;
                             myModal.show();
 
@@ -61,13 +62,13 @@ function renderTabla() {
                             if (!historialPersonajes.find((elemento) => elemento.name == data.name)) {
                                 historialPersonajes.push({
                                     name: data.name,
-                                    img: data.sprites.front_default
+                                    img: data.image
                                 })
                             }
 
                             console.log(historialPersonajes)
 
-                            localStorage.setItem('historial', JSON.stringify(historialPokemones));
+                            localStorage.setItem('historial', JSON.stringify(historialPersonajes));
                         })
 
                 })
@@ -76,7 +77,7 @@ function renderTabla() {
         })
         .catch(error => {
             console.error("Ha ocurrido un error:" + error)
-        })
+    })
 }
 
 renderTabla();
